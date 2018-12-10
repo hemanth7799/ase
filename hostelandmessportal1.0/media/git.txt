@@ -1,0 +1,10 @@
+ git init
+ 1924  cd hostelandmessportal/
+ 1925  cd Hostel
+ 1926  git commit -m viewsupdte
+ 1927  git add views.py
+ 1928  git push origin master
+ 1929  git commit -m viewsupdte
+ 1930  git add views.py
+ 1931  git push origin master
+

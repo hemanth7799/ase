@@ -1,0 +1,262 @@
+1)create table Student(snum int,sname varchar(250),major varchar(250),level varchar(250),age int,PRIMARY KEY(snum));
+Initially table looks like this,
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| snum  | int(11)      | NO   | PRI | NULL    |       |
+| sname | varchar(250) | YES  |     | NULL    |       |
+| major | varchar(250) | YES  |     | NULL    |       |
+| level | varchar(250) | YES  |     | NULL    |       |
+| age   | int(11)      | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+LOAD DATA LOCAL INFILE "/home/lokesh/Downloads/Student.txt" INTO TABLE Student COLUMNS TERMINATED BY ',';
+
+After populating data from Student.txt table look like this
++-----------+----------------------+--------------------------+-------+------+
+| snum      | sname                | major                    | level | age  |
++-----------+----------------------+--------------------------+-------+------+
+|  51135593 | 'Maria White'        | 'English'                | 'SR'  |   21 |
+|  60839453 | 'Charles Harris'     | 'Architecture'           | 'So'  |   22 |
+|  99354543 | 'Susan Martin'       | 'Law'                    | 'JR'  |   20 |
+| 112348546 | 'Joseph Thompson'    | 'Computer Science'       | 'SO'  |   19 |
+| 115987938 | 'Christopher Garcia' | 'Computer Science'       | 'JR'  |   20 |
+| 132977562 | 'Angela Martinez'    | 'History'                | 'SR'  |   20 |
+| 269734834 | 'Thomas Robinson'    | 'Psychology'             | 'SO'  |   18 |
+| 280158572 | 'Margaret Clark'     | 'Animal Science'         | 'FR'  |   18 |
+| 301221823 | 'Juan Rodriguez'     | 'Psychology'             | 'JR'  |   20 |
+| 318548912 | 'Dorthy Lewis'       | 'Finance'                | 'FR'  |   18 |
+| 320874981 | 'Daniel Lee'         | 'Electrical Engineering' | 'FR'  |   17 |
+| 322654189 | 'Lisa Walker'        | 'Computer Science'       | 'SO'  |   17 |
+| 348121549 | 'Paul Hall'          | 'Computer Science'       | 'JR'  |   18 |
+| 351565322 | 'Nancy Allen'        | 'Accounting'             | 'JR'  |   19 |
+| 451519864 | 'Mark Young'         | 'Finance'                | 'FR'  |   18 |
+| 455798411 | 'Luis Hernandez'     | 'Electrical Engineering' | 'FR'  |   17 |
+| 462156489 | 'Donald King'        | 'Mechanical Engineering' | 'SO'  |   19 |
+| 550156548 | 'George Wright'      | 'Education'              | 'SR'  |   21 |
+| 552455318 | 'Ana Lopez'          | 'Computer Engineering'   | 'SR'  |   19 |
+| 556784565 | 'Kenneth Hill'       | 'Civil Engineering'      | 'SR'  |   21 |
+| 567354612 | 'Karen Scott'        | 'Computer Engineering'   | 'FR'  |   18 |
+| 573284895 | 'Steven Green'       | 'Kinesiology'            | 'SO'  |   19 |
+| 574489456 | 'Betty Adams'        | 'Economics'              | 'JR'  |   20 |
+| 578875478 | 'Edward Baker'       | 'Veterinary Medicine'    | 'SR'  |   21 |
++-----------+----------------------+--------------------------+-------+------+
+
+create table Faculty(fid int,fname varchar(200),deptid int,PRIMARY KEY(fid));
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| fid    | int(11)      | NO   | PRI | NULL    |       |
+| fname  | varchar(200) | YES  |     | NULL    |       |
+| deptid | int(11)      | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+LOAD DATA LOCAL INFILE "/home/lokesh/Downloads/Faculty.txt" INTO TABLE Faculty COLUMNS TERMINATED BY ',';
+
+After populating data from Faculty.txt;
++-----------+-------------------+--------+
+| fid       | fname             | deptid |
++-----------+-------------------+--------+
+|  11564812 | 'John Williams'   |     68 |
+|  90873519 | 'Elizabeth Taylor |     11 |
+| 141582651 | 'Mary Johnson'    |     20 |
+| 142519864 | 'Ivana Teach'     |     20 |
+| 159542516 | 'William Moore'   |     33 |
+| 242518965 | 'James Smith'     |     68 |
+| 248965255 | 'Barbara Wilson'  |     12 |
+| 254099823 | 'Patricia Jones'  |     68 |
+| 287321212 | 'Michael Miller'  |     12 |
+| 356187925 | 'Robert Brown'    |     12 |
+| 486512566 | 'David Anderson'  |     20 |
+| 489221823 | 'Richard Jackson' |     33 |
+| 489456522 | 'Linda Davis'     |     20 |
+| 548977562 | 'Ulysses Teach'   |     20 |
+| 619023588 | 'Jennifer Thomas' |     11 |
++-----------+-------------------+--------+
+
+
+create table Class( name varchar(200), meets varchar(200), room varchar(50), fid int,PRIMARY KEY(name), foreign key(fid) references Faculty(fid));
+
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| name  | varchar(200) | NO   | PRI | NULL    |       |
+| meets | varchar(200) | YES  |     | NULL    |       |
+| room  | varchar(50)  | YES  |     | NULL    |       |
+| fid   | int(11)      | YES  | MUL | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+LOAD DATA LOCAL INFILE "/home/lokesh/Downloads/Class.txt" INTO TABLE Class COLUMNS TERMINATED BY ',';
+
+After populating data from Class.txt;
++-----------------------------------+------------------+----------+-----------+
+| name                              | meets            | room     | fid       |
++-----------------------------------+------------------+----------+-----------+
+| ''Operating System Design'        | TuTh 12-1:20     | 20 AVW   | 489456522 |
+| 'Air Quality Engineering'         | TuTh 10:30-11:45 | R15      |  11564812 |
+| 'American Political Parties'      | TuTh 2-3:15      | 20 AVW   | 619023588 |
+| 'Archaeology of the Incas'        | MWF 3-4:15       | R128     | 248965255 |
+| 'Aviation Accident Investigation' | TuTh 1-2:50      | Q3       |  11564812 |
+| 'Communication Networks'          | MW 9:30-10:45    | 20 AVW   | 141582651 |
+| 'Dairy Herd Management'           | TuTh 12:30-1:45  | R128     | 356187925 |
+| 'Data Structures'                 | MWF 10           | R128     | 489456522 |
+| 'Database Systems'                | MWF 12:30-1:45   | 1320 DCL | 142519864 |
+| 'Intoduction to Math'             | TuTh 8-9:30      | R128     | 489221823 |
+| 'Introductory Latin'              | MWF 3-4:15       | R12      | 248965255 |
+| 'Marketing Research'              | MW 10-11:15      | 1320 DCL | 489221823 |
+| 'Multivariate Analysis'           | TuTh 2-3:15      | R15      |  90873519 |
+| 'Optical Electronics'             | TuTh 12:30-1:45  | R15      | 254099823 |
+| 'Orbital Mechanics'               | MWF 8            | 1320 DCL |  11564812 |
+| 'Organic Chemistry'               | TuTh 12:30-1:45  | R12      | 489221823 |
+| 'Patent Law'                      | F 1-2:50         | R128     |  90873519 |
+| 'Perception                       | MTuWTh 3'        | Q3       | 489221823 |
+| 'Seminar in American Art'         | M 4              | R15      | 489221823 |
+| 'Social Cognition'                | Tu 6:30-8:40     | R15      | 159542516 |
+| 'Urban Economics'                 | MWF 11           | 20 AVW   | 489221823 |
++-----------------------------------+------------------+----------+-----------+
+create table Enrolled(snum int,cname varchar(200),primary key(snum,cname));
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| snum  | int(11)      | NO   | PRI | NULL    |       |
+| cname | varchar(200) | NO   | PRI | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+LOAD DATA LOCAL INFILE "/home/lokesh/Downloads/Enrolled.txt" INTO TABLE Enrolled COLUMNS TERMINATED BY ',';
+
+After populating data from Enrolled.txt;
++-----------+----------------------------+
+| snum      | cname                      |
++-----------+----------------------------+
+|  99354543 | Patent Law                 |
+| 112348546 | Database Systems           |
+| 112348546 | Operating System Design    |
+| 115987938 | Database Systems           |
+| 115987938 | Operating System Design    |
+| 301221823 | American Political Parties |
+| 301221823 | Perception                 |
+| 301221823 | Social Cognition           |
+| 322654189 | Database Systems           |
+| 322654189 | Operating System Design    |
+| 348121549 | Database Systems           |
+| 455798411 | Operating System Design    |
+| 455798411 | Optical Electronics        |
+| 552455318 | Communication Networks     |
+| 552455318 | Database Systems           |
+| 552455318 | Operating System Design    |
+| 556784565 | Air Quality Engineering    |
+| 567354612 | Data Structures            |
+| 567354612 | Operating System Design    |
+| 574489456 | Urban Economics            |
++-----------+----------------------------+
+
+
+2)select sname from Student where age=(select min(age) as min_age from Student);
++------------------+
+| sname            |
++------------------+
+| 'Daniel Lee'     |
+| 'Lisa Walker'    |
+| 'Luis Hernandez' |
++------------------+
+3)select sname from Student where Student.snum NOT in (select snum from Enrolled);
++-------------------+
+| sname             |
++-------------------+
+| 'Maria White'     |
+| 'Charles Harris'  |
+| 'Angela Martinez' |
+| 'Thomas Robinson' |
+| 'Margaret Clark'  |
+| 'Dorthy Lewis'    |
+| 'Daniel Lee'      |
+| 'Nancy Allen'     |
+| 'Mark Young'      |
+| 'Donald King'     |
+| 'George Wright'   |
+| 'Steven Green'    |
+| 'Edward Baker'    |
++-------------------+
+4)select fname from Faculty where fid=(select distinct fid from Class group by fid having count(fid)=(select count(distinct(room)) from Class));
+
++-------------------+
+| fname             |
++-------------------+
+| 'Richard Jackson' |
++-------------------+
+5)select sname from Student where snum=(select distinct snum from Enrolled group by snum having count(snum)=(select count(distinct(cname)) from Enrolled));
+
+Empty set (0.00 sec)
+6)select name from Class where room = 'R128' or name in (select distinct(cname) from Enrolled group by cname having count(snum) >= 5);
++----------------------------+
+| name                       |
++----------------------------+
+| 'Archaeology of the Incas' |
+| 'Dairy Herd Management'    |
+| 'Data Structures'          |
+| 'Intoduction to Math'      |
+| 'Patent Law'               |
++----------------------------+
+7)select sname from Student order by age desc;
++----------------------+
+| sname                |
++----------------------+
+| 'Charles Harris'     |
+| 'Edward Baker'       |
+| 'Maria White'        |
+| 'Kenneth Hill'       |
+| 'George Wright'      |
+| 'Susan Martin'       |
+| 'Betty Adams'        |
+| 'Juan Rodriguez'     |
+| 'Angela Martinez'    |
+| 'Christopher Garcia' |
+| 'Steven Green'       |
+| 'Joseph Thompson'    |
+| 'Ana Lopez'          |
+| 'Nancy Allen'        |
+| 'Donald King'        |
+| 'Mark Young'         |
+| 'Karen Scott'        |
+| 'Paul Hall'          |
+| 'Dorthy Lewis'       |
+| 'Margaret Clark'     |
+| 'Thomas Robinson'    |
+| 'Luis Hernandez'     |
+| 'Lisa Walker'        |
+| 'Daniel Lee'         |
++----------------------+
+
+8)select table_name,table_type,engine,table_rows,avg_row_length,index_length,create_time from information_schema.tables  where table_schema not in ('information_schema', 'mysql') and table_schema='mysqlassign01';
++------------+------------+--------+------------+----------------+--------------+---------------------+
+| table_name | table_type | engine | table_rows | avg_row_length | index_length | create_time         |
++------------+------------+--------+------------+----------------+--------------+---------------------+
+| Class      | BASE TABLE | InnoDB |         21 |            780 |        16384 | 2018-01-24 06:37:05 |
+| Enrolled   | BASE TABLE | InnoDB |         20 |            819 |            0 | 2018-01-24 06:37:27 |
+| Faculty    | BASE TABLE | InnoDB |         15 |           1092 |            0 | 2018-01-24 06:36:47 |
+| Student    | BASE TABLE | InnoDB |         24 |            682 |            0 | 2018-01-24 06:36:19 |
++------------+------------+--------+------------+----------------+--------------+---------------------+
+9)DELETE FROM Faculty WHERE deptid=20;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`sqlassign01`.`Class`, CONSTRAINT `Class_ibfk_1` FOREIGN KEY (`fid`) REFERENCES `Faculty` (`fid`))
+
+10)UPDATE Faculty SET fid = 986648242 WHERE deptid = 68; 
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`sqlassign01`.`Class`, CONSTRAINT `Class_ibfk_1` FOREIGN KEY (`fid`) REFERENCES `Faculty` (`fid`))
+11)run queries on metadata;
+select table_name,avg_row_length,table_rows from information_schema.tables where table_schema='mysqlassign01';
++------------+----------------+------------+
+| table_name | avg_row_length | table_rows |
++------------+----------------+------------+
+| Class      |            780 |         21 |
+| Enrolled   |            819 |         20 |
+| Faculty    |           1092 |         15 |
+| Student    |            682 |         24 |
++------------+----------------+------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
